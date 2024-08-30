@@ -1,1 +1,1 @@
-# cardiac_gaze
+# visual cardiac project
