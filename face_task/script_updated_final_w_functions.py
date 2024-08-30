@@ -12,7 +12,7 @@ from statistics import mean
 
 
 from intart_functions import sendParallelTrigger, readParallelTrigger
-from create_stimuli_final import create_experimental_stimuli
+from create_stimuli_function import create_experimental_stimuli
 from experiment_variables_function import experiment_variables
 from save_file_modification_function import save_file_modification
 from instructions_function import instructions
