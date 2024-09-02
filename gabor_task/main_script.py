@@ -9,6 +9,8 @@
 # - In total, there are 3 blocks of 60 trials. Each block will have 15 HF-S/LF-S/HF-D/LF-D
 # - The degree of orientation of the Gabor patch will be adjusted trial-by-trial to maintain a constant performance of 75% accuracy
 
+# A typical block will run: SDDSDSSDSDD (S = systole, D = diastole), and HF
+
 import psychopy
 import os.path as op
 from psychopy import event, visual, gui, core
@@ -43,6 +45,26 @@ counterbalance_group = int(participant_info['Counterbalance group']) # and this 
 
 win = visual.Window(color = '#000000', fullscr = True, monitor="testMonitor", units="pix")
 win.mouseVisible = False
+
+### VARIABLES FUNCTION ### 
+
+pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, number_trials, isi, iti = create_experimental_variables(win) 
+
+### STIMULI FUNCTION ### 
+
+fixation_cross_horizontal, fixation_cross_vertical, training_instructions_one = create_experimental_stimuli(win)
+
+### FUNCTION FOR HEARTBEAT DETECTION ###
+
+def listenforHR_basic(): 
+    pport_address_in = 16361 # set to 889 for psychopys lab tests 16377        
+    while True:
+        signal_in = readParallelTrigger(pport_address_in)
+        if signal_in > 63: 
+            time_hb_prev = experiment_clock.getTime()
+            break
+    return time_hb_prev
+
 
 
 
