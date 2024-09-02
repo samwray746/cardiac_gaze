@@ -3,10 +3,11 @@
 # - During each trial, a Gabor patch (2 degree size) is presented at a 4 degree eccentricity from the fixation dot 
 # - The Gabor patch can either be high-frequency (6 cpd) or low-frequency (3 cpd) 
 # - During each trial, the Gabor patch will be presented after an R-peak sensing period at systole/diastole for 40ms 
-# - After Gabor-patch presentation there will be an ISI of 2-3 seconds
+# - After Gabor patch presentation there will be an ISI of 2-3 seconds
 # - When the fixation dot turns yellow, participants respond according to whether the Gabor patch was tilted clockwise or counterclockwise (1.5s)
 # - Then, another inter-trial interval of 2-3 seconds 
 # - In total, there are 3 blocks of 60 trials. Each block will have 15 HF-S/LF-S/HF-D/LF-D
+# - The degree of orientation of the Gabor patch will be adjusted trial-by-trial to maintain a constant performance of 75% accuracy
 
 import psychopy
 import os.path as op
