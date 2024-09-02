@@ -48,7 +48,7 @@ win.mouseVisible = False
 
 ### VARIABLES FUNCTION ### 
 
-pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, isi, iti = create_experimental_variables(win) 
+pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, isi, iti, sd_1, sd_2, freq_1, freq_2 = create_experimental_variables(win) 
 
 ### STIMULI FUNCTION ### 
 
