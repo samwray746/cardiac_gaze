@@ -46,7 +46,7 @@ def create_experimental_stimuli(win):
     
     ### INSTRUCTIONS ### 
     
-    training_instructions_one = visual.TextStim(win, text='Welcome to the experiment!\n\nDuring the experiment, faces will quickly appear that are gazing in different directions.\n\n\nPress spacebar to continue.', height = 25)
+    training_instructions_one = visual.TextStim(win, text='Welcome to the task!\n\nDuring the experiment, faces will quickly appear that are gazing in different directions.\n\n\nPress spacebar to continue.', height = 25)
     training_instructions_two = visual.TextStim(win, text='After viewing a face, you will be asked where you thought the face was gazing.\n\n\nPress spacebar to continue.', height = 25)
     training_instructions_three = visual.TextStim(win, text='A white circle and red marker will be presented.\n\n\nUse the arrow keys to move the marker where you think the face is gazing, and spacebar to make your choice.\n\n\nPress spacebar to continue.', height = 25)
     training_instructions_four = visual.TextStim(win, text='For instance, moving the marker to the furthest left part of the circle means you judged the face to be looking as far to YOUR left as possible.\n\n\nPress spacebar to continue.', height = 25)
