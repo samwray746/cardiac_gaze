@@ -17,9 +17,9 @@ from psychopy import event, visual, gui, core
 from statistics import mean
 
 from intart_functions import sendParallelTrigger, readParallelTrigger
-from create_stimuli_function import create_experimental_stimuli
-from experiment_variables_function import experiment_variables
-from save_file_modification_function import save_file_modification
+from create_stimuli_function import create_experiment_stimuli
+from experiment_variables_function import create_experiment_variables
+from save_file_function import save_file_modification
 from instructions_function import instructions
 from experiment_block_function import experiment_block 
 from save_experimental_block_function import save_experimental_block
