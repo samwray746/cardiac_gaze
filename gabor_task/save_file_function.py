@@ -20,4 +20,4 @@ def save_file_modification(subject_id):
         for header in range(len(heading_strings)): # adding the headers
             data_sheet.cell(1, header+1, heading_strings[header])
     
-    return data_path, data_wb, faces_strings, variable_strings, save_file
+    return data_wb, save_file
