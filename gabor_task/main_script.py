@@ -28,19 +28,15 @@ from save_experimental_block_function import save_experimental_block
 
 participant_info = {'Subject ID': '', 'Age': '', 'Sex': ['M', 'F'], 'Random seed': ''}
 
-# The two orders refer to the two variables of high- and low-frequency, and systole and diastole
-
 myDlg = gui.DlgFromDict(participant_info, title="Sam gaze experiment")
 
 if not myDlg.OK:
     core.quit()
     
-order = int(participant_info['Order']) # this is for the order in which systole/diastole blocks are presented (two possible orders, 1 and 2)
 subject_id = str(participant_info['Subject ID'])
 random_seed = int(participant_info['Random seed'])
 age = str(participant_info['Age'])
 sex = str(participant_info['Sex'])
-counterbalance_group = int(participant_info['Counterbalance group']) # and this is for the order in which the faces are presented (6 possible groups) 
 
 win = visual.Window(color = '#000000', fullscr = True, monitor="testMonitor", units="pix")
 win.mouseVisible = False
