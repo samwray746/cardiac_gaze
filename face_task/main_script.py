@@ -60,7 +60,7 @@ def listenforHR_basic():
 
 ### FUNCTION FOR MODIFYING THE SAVE FILE ### 
 
-data_path, data_wb, faces_strings, variable_strings, save_file = save_file_modification(subject_id)
+data_wb, save_file = save_file_modification(subject_id)
 
 ### INSTRUCTIONS FUNCTION ### 
 
