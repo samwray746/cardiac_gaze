@@ -7,7 +7,6 @@ Created on Thu Jul 11 13:46:20 2024
 
 from psychopy import core
 
-
 def experiment_variables(win):
     
     ### VARIABLES, PATHS, FUNCTIONS ### 
