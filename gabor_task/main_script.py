@@ -69,6 +69,11 @@ def listenforHR_basic():
 
 data_wb, save_file = save_file_modification(subject_id)
 
+### INSTRUCTIONS ### 
+
+instructions(training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, win)
+
+
 
 
 
