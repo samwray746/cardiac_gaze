@@ -48,6 +48,7 @@ def create_experimental_stimuli(win):
     incorrect_response = visual.TextStim(win, text="Incorrect!", height = 25)
     too_late = visual.TextStim(win, text="Too late", height = 25)
 
+    return fixation_dot_grey, fixation_dot_green, fixation_dot_yellow, training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, training_complete, block_complete, correct_response, incorrect_response, too_late
     
 
     
