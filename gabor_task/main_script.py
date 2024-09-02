@@ -9,7 +9,7 @@
 # - In total, there are 3 blocks of 60 trials. Each block will have 15 HF-S/LF-S/HF-D/LF-D
 # - The degree of orientation of the Gabor patch will be adjusted trial-by-trial to maintain a constant performance of 75% accuracy
 
-# A typical block will run: SDDSDSSDSDD (S = systole, D = diastole), and HF
+# The trial type will be psuedorandomised, a non-consecutive random choice of the 4 trial types from a list of 4 (that is refreshed every 4 trials)
 
 import psychopy
 import os.path as op
@@ -68,6 +68,8 @@ def listenforHR_basic():
 ### FUNCTION FOR CREATING THE SAVE FILE ### 
 
 data_wb, save_file = save_file_modification(subject_id)
+
+
 
 
 
