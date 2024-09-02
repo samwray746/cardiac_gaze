@@ -9,7 +9,7 @@ import os.path as op
 
 def save_file_modification(subject_id):
     data_path = 'D:\\PhD\\cardiac_gaze\\data'
-    subject_id_file_name = subject_id + '_data.xlsx'
+    subject_id_file_name = subject_id + '_face_task_data.xlsx'
     save_file = op.join(data_path, subject_id_file_name)
 
     data_wb = openpyxl.Workbook() # opening the excel file now 
