@@ -18,7 +18,7 @@ from statistics import mean
 
 from intart_functions import sendParallelTrigger, readParallelTrigger
 from create_stimuli_function import create_experiment_stimuli
-from experiment_variables_function import create_experiment_variables
+from experimental_variables_function import experiment_variables
 from save_file_function import save_file_modification
 from instructions_function import instructions
 from experiment_block_function import experiment_block 
@@ -52,7 +52,7 @@ pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_fr
 
 ### STIMULI FUNCTION ### 
 
-fixation_cross_horizontal, fixation_cross_vertical, training_instructions_one = create_experimental_stimuli(win)
+fixation_cross_horizontal, fixation_cross_vertical, training_instructions_one = create_experiment_stimuli(win)
 
 ### FUNCTION FOR HEARTBEAT DETECTION ###
 
