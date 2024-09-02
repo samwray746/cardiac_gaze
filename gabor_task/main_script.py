@@ -26,8 +26,7 @@ from save_experimental_block_function import save_experimental_block
 
 ### GATHERING PARTICIPANT INFO ### 
 
-participant_info = {'Subject ID': '', 'Age': '', 'Sex': ['M', 'F'],
-                    'Order, frequency': '', 'Order, phase': '', 'Random seed': ''}
+participant_info = {'Subject ID': '', 'Age': '', 'Sex': ['M', 'F'], 'Random seed': ''}
 
 # The two orders refer to the two variables of high- and low-frequency, and systole and diastole
 
