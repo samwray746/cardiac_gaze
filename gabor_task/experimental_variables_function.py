@@ -32,7 +32,7 @@ def experiment_variables(win):
     # Sequence four, freq
     freq_2 = ['LF' if x == 'HF' else 'HF' for x in freq_1]
 
-
+    return pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, isi, iti, sd_1, sd_2, freq_1, freq_2
 
 
 
