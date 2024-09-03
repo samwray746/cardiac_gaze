@@ -4,7 +4,7 @@ Created on Thu Jul 11 14:40:35 2024
 
 @author: bsms9zh8
 """
-from script_updated_final_w_functions import listenforHR_basic
+from main_script import listenforHR_basic
 from is_within_circle_function import is_within_circle
 from intart_functions import sendParallelTrigger
 import random
