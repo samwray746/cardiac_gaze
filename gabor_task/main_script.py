@@ -70,6 +70,8 @@ instructions(training_instructions_one, training_instructions_two, training_inst
 
 ### TRAINING BLOCKS ### 
 
+training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions)
+
 
 
 
