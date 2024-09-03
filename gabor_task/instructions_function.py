@@ -40,7 +40,7 @@ def instructions(training_instructions_one, training_instructions_two, training_
     win.flip()
     event.waitKeys(keyList=['space'])
     win.flip()
-    # training_instructions_nine.draw()  ### INCLUDE WHEN TRAINING BLOCK IS CREATED ###
-    # win.flip()
-    # event.waitKeys(keyList=['space'])
-    # win.flip()
+    training_instructions_nine.draw()  
+    win.flip()
+    event.waitKeys(keyList=['space'])
+    win.flip()
