@@ -40,6 +40,7 @@ def create_experimental_stimuli(win):
     training_instructions_seven = visual.TextStim(win, text='The experiment consists of 3 blocks of 60 trials. You can take a break in-between blocks.\n\n\nPress the spacebar to continue.', height = 25)
     training_instructions_eight = visual.TextStim(win, text='If you have any questions, ask the researcher now.\n\n\nPress the spacebar to continue.', height = 25)
     training_instructions_nine = visual.TextStim(win, text="Let's do a few training trials.\n\n\nPress the spacebar to continue.", height = 25)
+    training_begins = visual.TextStim(win, text="
 
     training_complete = visual.TextStim(win, text="Training block complete. Well done!\n\n\nIf you have any questions, ask the researcher now. Otherwise, press spacebar to start the first experimental block.", height = 25)
     block_complete = visual.TextStim(win, text="Experimental block complete. Well done!\n\n\nTake a rest, and press the spacebar to begin the next block.", height = 25)
