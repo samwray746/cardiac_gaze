@@ -43,7 +43,7 @@ win.mouseVisible = False
 
 ### VARIABLES FUNCTION ### 
 
-pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, isi, iti, diff_trial_conditions = experiment_variables(win) 
+pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, training_trials, isi, iti, diff_trial_conditions = experiment_variables(win) 
 
 ### STIMULI FUNCTION ### 
 
@@ -68,6 +68,7 @@ data_wb, save_file = save_file_modification(subject_id)
 
 instructions(training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, win)
 
+### TRAINING BLOCKS ### 
 
 
 
