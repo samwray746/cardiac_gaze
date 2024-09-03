@@ -15,5 +15,8 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     correct_incorrect = []
     r_peak_times_list = []
     mean_rr_ints_list = [] 
-    predicted_rr_ints_list = [] 
+    predicted_rr_ints_list = []
+
+    # Starting off the training block by showing the grey fixation dot for 
+    
                    
