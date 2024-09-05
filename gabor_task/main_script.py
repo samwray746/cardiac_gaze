@@ -47,7 +47,7 @@ pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_fr
 
 ### STIMULI FUNCTION ### 
 
-fixation_dot_grey, fixation_dot_green, fixation_dot_yellow, training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, training_complete, block_complete, correct_response, incorrect_response, too_late = create_experiment_stimuli(win)
+fixation_dot_grey, fixation_dot_green, fixation_dot_yellow, training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, training_begins, training_complete, block_complete, correct_response, incorrect_response, too_late = create_experiment_stimuli(win)
 
 ### FUNCTION FOR HEARTBEAT DETECTION ###
 
