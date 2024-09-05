@@ -14,7 +14,7 @@ def experiment_variables(win):
     one_frame = 1/fr
 
     trials_p_block = 60 # trials in a block 
-    training_trials = 12
+    training_trials = 56
     iti = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0] # inter-trial interval
     isi = [2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0] # inter-stimulus interval
 
