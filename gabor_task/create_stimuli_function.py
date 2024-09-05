@@ -40,7 +40,7 @@ def create_experimental_stimuli(win):
     training_instructions_seven = visual.TextStim(win, text='The experiment consists of 3 blocks of 60 trials. You can take a break in-between blocks.\n\n\nPress the spacebar to continue.', height = 25)
     training_instructions_eight = visual.TextStim(win, text='If you have any questions, ask the researcher now.\n\n\nPress the spacebar to continue.', height = 25)
     training_instructions_nine = visual.TextStim(win, text="Let's do a few training trials.\n\n\nPress the spacebar to continue.", height = 25)
-    training_begins = visual.TextStim(win, text="
+    training_begins = visual.TextStim(win, text="Training block beginning now.\n\n\nGet ready for the green cross to appear.", height = 25) 
 
     training_complete = visual.TextStim(win, text="Training block complete. Well done!\n\n\nIf you have any questions, ask the researcher now. Otherwise, press spacebar to start the first experimental block.", height = 25)
     block_complete = visual.TextStim(win, text="Experimental block complete. Well done!\n\n\nTake a rest, and press the spacebar to begin the next block.", height = 25)
@@ -49,7 +49,7 @@ def create_experimental_stimuli(win):
     incorrect_response = visual.TextStim(win, text="Incorrect!", height = 25)
     too_late = visual.TextStim(win, text="Too late", height = 25)
 
-    return fixation_dot_grey, fixation_dot_green, fixation_dot_yellow, training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, training_complete, block_complete, correct_response, incorrect_response, too_late
+    return fixation_dot_grey, fixation_dot_green, fixation_dot_yellow, training_instructions_one, training_instructions_two, training_instructions_three, training_instructions_four, training_instructions_five, training_instructions_six, training_instructions_seven, training_instructions_eight, training_instructions_nine, training_complete, training_begins, block_complete, correct_response, incorrect_response, too_late
     
 
     
