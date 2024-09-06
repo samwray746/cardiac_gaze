@@ -7,7 +7,7 @@ from psychopy import core, visual, event
 # This function runs the training trials for the experiment. The training trials allows the participant to get used to the task, and also sets the difficulty thresholds for each trial type 
 # that the participant begins with in the experimental blocks. 
 
-def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, starting_orientation, training_begins)
+def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation, training_begins, pport_address_spike, trigger_code_spike)
     trial_type_rec = [] # i.e., systole high-frequency, diastole high-frequency etc. 
     angle_offset_rec = [] # offset of the Gabor patch 
     lr = [] # whether the Gabor patch was presented left or right 
@@ -48,6 +48,12 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
 
         diff_trial_conditions.remove(this_trial_condition) # once selected, remove from the possible trial types until the list is refreshed 
         lr_choice = random.choice(left_right)
+        
+        if lr_choice = 'left':
+            gabor_pos = (-30, 0) # just example values 
+        else:
+            gabor_pos = (30, 0)
+        
         anti_or_clockwise = random.choice(clockwise_anticlockwise)
         r_peak_counter = 0
         
@@ -55,20 +61,61 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
         rr_intervals = [] 
 
         if (this_trial_type == 's_hf') or (this_trial_type == 's_lf'): # systole trial 
-           # preparing the stimulus
-           if this_trial_type == 's_hf':
-               if prev_trial_condition == 'first_trial': # i.e., the first trial 
-                   g_stim = visual.GratingStim(win=win, 
-                           tex='sin', 
-                           mask='gauss', 
-                           size=50,  # Size of the Gabor patch in pixels
-                           sf=0.1,   # Spatial frequency (cycles per pixel)
-                           ori=45,   # Orientation of the Gabor patch (in degrees)
-                           contrast=1.0)  # Contrast of the Gabor patch
+           # preparing the stimulus - change upon converting to visual angle 
+            if this_trial_type == 's_hf': 
+                g_stim = visual.GratingStim(win=win, 
+                        tex='sin', 
+                       mask='gauss', 
+                       size=50,  # Size of the Gabor patch in pixels
+                       sf=0.1,   # Spatial frequency (cycles per pixel)
+                       pos = gabor_pos # Position of the Gabor patch - again arbitrary for now 
+                       ori=gabor_orientation,   # Orientation of the Gabor patch (in degrees)
+                       contrast=1.0)  # Contrast of the Gabor patch
             
-        
+            if this_trial_type == 's_lf': 
+                g_stim = visual.GratingStim(win=win, 
+                        tex='sin', 
+                       mask='gauss', 
+                       size=50,  # Size of the Gabor patch in pixels
+                       sf=0.2,   # Spatial frequency (cycles per pixel) - just an example until we change 
+                       pos = gabor_pos # Position of Gabor patch, arbitrary for now 
+                       ori=gabor_orientation,   # Orientation of the Gabor patch (in degrees)
+                       contrast=1.0)  # Contrast of the Gabor patch
             
-        
+            fixation_dot_green.draw() # now that R-peak sensing is beginning, draw the green fixation dot 
+            win.flip() 
+            g_stim.draw() # preparing the Gabor patch for presentation 
+
+            ### R-PEAK DETECTION ### 
+                 
+             # For diastole trials we're going to be gathering 3 RR-intervals, so waiting for 4 R-peaks, then presenting
+             # the stimulus just before the 5th R-peak. 
+             
+             # We'll do the same for systole trials to keep the ISIs similar, i.e., detecting 5 R-peaks, and presented 250ms after the 5th  
+                 
+            for peak in range(5): 
+                 r_peak_time = listenforHR_basic()
+                 r_peak_times.append(r_peak_time)
+                 countdown.reset()
+                 r_peak_counter += 1 
+                 
+                 # A potential problem has been that when the threshold is crossed (i.e., an R-peak), the listenforHR_basic doesn't only send once, but during the
+                 # whole time that the signal crosses the threshold. So I'm introducing a delay during the sensing period, in order to pause everything
+                 # Until the signal has gone back below the threshold 
+                 
+                 if r_peak_counter < 5:
+                     core.wait(0.5)
+             
+            while True: # waiting 250ms after R-peak has been detected
+                 if countdown.getTime() < (-0.250 + one_frame):
+                     break
+
+            win.flip()
+            countdown.reset()
+            sendParallelTrigger(pport_address_spike, trigger_code_spike)
+            
+
+            
 
         
         
