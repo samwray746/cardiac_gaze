@@ -163,8 +163,54 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                        pos = gabor_pos, # Position of Gabor patch, arbitrary for now 
                        ori=d_lf_offset_rec[-1],   # Orientation of the Gabor patch (in degrees)
                        contrast=1.0)  # Contrast of the Gabor patch
+
+            fixation_dot_green.draw() # now that R-peak sensing is beginning, draw the green fixation dot 
+            win.flip() 
+            g_stim.draw() # preparing the Gabor patch for presentation 
+
+            ### R-PEAK DETECTION AND RR-INTERVAL CALCULATION ### 
+                
+            for peak in range(4): # gathering 4 R-peaks
+                r_peak_time = listenforHR_basic()
+                r_peak_times.append(r_peak_time)
+                countdown.reset()
+                r_peak_counter += 1
             
+                if peak < r_peak_counter < 4: # again stopping multiple signals being sent per R-peak 
+                    core.wait(0.5)
+
+            ### CALCULATING RR-INTERVALS ### 
             
+            for peak in range(len(r_peak_times) - 1): # going through the R-peak list
+                rr_interval = r_peak_times[peak + 1] - r_peak_times[peak] # R-peak, index + 1, minus R-peak, index
+                rr_intervals.append(rr_interval)
+                
+            mean_rr_int = mean(rr_intervals) # this is useful to know to check for faulty trials 
+            
+            predicted_rr_int = (rr_intervals[-1]*0.5) + (rr_intervals[-2]*0.3) + (rr_intervals[-3]*0.2)
+            # ^ I'm calculating the predicted RR-interval by weighting the calculated RR-intervals, most recent with the highest weighting 
+            
+            ### DOING SOME BASIC ADJUSTMENTS BASED OFF THE MEAN RR-INTERVALS ### 
+            
+            if predicted_rr_int >= 1: # i.e., less than 60bpm
+            
+                while True:
+                    if countdown.getTime() < (-predicted_rr_int + 0.150 + one_frame): # we present the stimulus 150ms before the next predicted R-peak
+                        break
+            
+            elif (1 > predicted_rr_int) and (predicted_rr_int >= 0.86): #i.e., between 60 and 70bpm
+                
+                while True:
+                    if countdown.getTime() < (-predicted_rr_int + 0.135 + one_frame): # present the stimulus 0.135ms before the next predicted R-peak
+                        break
+                    
+            elif predicted_rr_int < 0.86: # i.e., greater than 70bpm
+            
+                while True: 
+                    if countdown.getTime() < (-predicted_rr_int + 0.125 + one_frame): # present the stimulus 0.125ms before the next predicted R-peak 
+                        break                
+        
+        
 
             
 
