@@ -81,8 +81,8 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                        mask='gauss', 
                        size=50,  # Size of the Gabor patch in pixels
                        sf=0.1,   # Spatial frequency (cycles per pixel)
-                       pos = gabor_pos # Position of the Gabor patch - again arbitrary for now 
-                       ori=,   # Orientation of the Gabor patch (in degrees)
+                       pos = gabor_pos, # Position of the Gabor patch - again arbitrary for now 
+                       ori=s_hf_offset_rec[-1],   # Orientation of the Gabor patch (in degrees)
                        contrast=1.0)  # Contrast of the Gabor patch
             
             if this_trial_type == 's_lf': 
@@ -91,8 +91,8 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                        mask='gauss', 
                        size=50,  # Size of the Gabor patch in pixels
                        sf=0.2,   # Spatial frequency (cycles per pixel) - just an example until we change 
-                       pos = gabor_pos # Position of Gabor patch, arbitrary for now 
-                       ori=gabor_orientation,   # Orientation of the Gabor patch (in degrees)
+                       pos = gabor_pos, # Position of Gabor patch, arbitrary for now 
+                       ori=s_lf_offset_rec[-1],   # Orientation of the Gabor patch (in degrees)
                        contrast=1.0)  # Contrast of the Gabor patch
             
             fixation_dot_green.draw() # now that R-peak sensing is beginning, draw the green fixation dot 
@@ -142,7 +142,27 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                 
             mean_rr_int = mean(rr_intervals)
         
-
+        if (this_trial_type == 'd_hf') or (this_trial_type == 'd_lf'): # diastole trial 
+           # preparing the stimulus - change upon converting to visual angle
+           if this_trial_type == 'd_hf': 
+                g_stim = visual.GratingStim(win=win, 
+                        tex='sin', 
+                       mask='gauss', 
+                       size=50,  # Size of the Gabor patch in pixels
+                       sf=0.1,   # Spatial frequency (cycles per pixel)
+                       pos = gabor_pos, # Position of the Gabor patch - again arbitrary for now 
+                       ori=d_hf_offset_rec[-1],   # Orientation of the Gabor patch (in degrees)
+                       contrast=1.0)  # Contrast of the Gabor patch
+            
+            if this_trial_type == 'd_lf': 
+                g_stim = visual.GratingStim(win=win, 
+                        tex='sin', 
+                       mask='gauss', 
+                       size=50,  # Size of the Gabor patch in pixels
+                       sf=0.2,   # Spatial frequency (cycles per pixel) - just an example until we change 
+                       pos = gabor_pos, # Position of Gabor patch, arbitrary for now 
+                       ori=d_lf_offset_rec[-1],   # Orientation of the Gabor patch (in degrees)
+                       contrast=1.0)  # Contrast of the Gabor patch
             
             
 
