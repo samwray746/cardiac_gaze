@@ -144,7 +144,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
         
         if (this_trial_type == 'd_hf') or (this_trial_type == 'd_lf'): # diastole trial 
            # preparing the stimulus - change upon converting to visual angle
-           if this_trial_type == 'd_hf': 
+            if this_trial_type == 'd_hf': 
                 g_stim = visual.GratingStim(win=win, 
                         tex='sin', 
                        mask='gauss', 
@@ -193,24 +193,33 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
             ### DOING SOME BASIC ADJUSTMENTS BASED OFF THE MEAN RR-INTERVALS ### 
             
             if predicted_rr_int >= 1: # i.e., less than 60bpm
-            
                 while True:
                     if countdown.getTime() < (-predicted_rr_int + 0.150 + one_frame): # we present the stimulus 150ms before the next predicted R-peak
                         break
-            
             elif (1 > predicted_rr_int) and (predicted_rr_int >= 0.86): #i.e., between 60 and 70bpm
-                
                 while True:
                     if countdown.getTime() < (-predicted_rr_int + 0.135 + one_frame): # present the stimulus 0.135ms before the next predicted R-peak
-                        break
-                    
+                        break    
             elif predicted_rr_int < 0.86: # i.e., greater than 70bpm
-            
                 while True: 
                     if countdown.getTime() < (-predicted_rr_int + 0.125 + one_frame): # present the stimulus 0.125ms before the next predicted R-peak 
                         break                
         
-        
+            win.flip()
+            countdown.reset()
+            sendParallelTrigger(pport_address_spike, trigger_code_spike)
+            fixation_dot_grey.draw()
+
+            while True:
+                if countdown.getTime() < (-0.04 + one_frame):
+                    break
+            win.flip()
+            
+
+        ### INTER-STIMULUS INTERVAL ### 
+
+            
+            
 
             
 
