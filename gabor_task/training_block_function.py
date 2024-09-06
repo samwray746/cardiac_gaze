@@ -7,7 +7,7 @@ from psychopy import core, visual, event
 # This function runs the training trials for the experiment. The training trials allows the participant to get used to the task, and also sets the difficulty thresholds for each trial type 
 # that the participant begins with in the experimental blocks. 
 
-def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions)
+def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, starting_orientation, training_begins)
     trial_type_rec = [] # i.e., systole high-frequency, diastole high-frequency etc. 
     angle_offset_rec = [] # offset of the Gabor patch 
     lr = [] # whether the Gabor patch was presented left or right 
@@ -21,7 +21,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     s_lf_offset_rec = [] # systole, low-frequency
     d_hf_offset_rec = [] # diastole, high_frequency 
     d_lf_offset_rec = [] # diastole, low-frequency 
-
+    
     # Starting off the training block by showing the grey fixation dot for three seconds
     countdown.reset() 
     fixation_dot_grey.draw() 
@@ -45,11 +45,28 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                 if this_trial_condition != prev_trial_condition: # if it's not the same, break loop 
                     break
                 # otherwise, continue selection 
-                 
 
+        diff_trial_conditions.remove(this_trial_condition) # once selected, remove from the possible trial types until the list is refreshed 
+        lr_choice = random.choice(left_right)
+        anti_or_clockwise = random.choice(clockwise_anticlockwise)
+        r_peak_counter = 0
         
+        r_peak_times = [] 
+        rr_intervals = [] 
 
         if (this_trial_type == 's_hf') or (this_trial_type == 's_lf'): # systole trial 
+           # preparing the stimulus
+           if this_trial_type == 's_hf':
+               if prev_trial_condition == 'first_trial': # i.e., the first trial 
+                   g_stim = visual.GratingStim(win=win, 
+                           tex='sin', 
+                           mask='gauss', 
+                           size=50,  # Size of the Gabor patch in pixels
+                           sf=0.1,   # Spatial frequency (cycles per pixel)
+                           ori=45,   # Orientation of the Gabor patch (in degrees)
+                           contrast=1.0)  # Contrast of the Gabor patch
+            
+        
             
         
 
