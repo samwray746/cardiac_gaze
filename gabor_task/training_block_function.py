@@ -23,7 +23,17 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     s_lf_offset_rec = [] # systole, low-frequency
     d_hf_offset_rec = [] # diastole, high_frequency 
     d_lf_offset_rec = [] # diastole, low-frequency 
-    
+
+    anti_or_clockwise = random.choice(clockwise_anticlockwise) # kicking things off by randomly choosing whether the first presentation is clockwise/anticlockwise 
+
+    if anti_or_clockwise == 'ac': #i.e., clockwise
+        gabor_orientation = -gabor_orientation 
+        
+    s_hf_offset_rec.append(gabor_orientation) # starting orientation 
+    s_lf_offset_rec.append(gabor_orientation) # starting orientation 
+    d_hf_offset_rec.append(gabor_orientation) # starting orientation    
+    d_lf_offset_rec.append(gabor_orientation) # starting orientation 
+
     # Starting off the training block by showing the grey fixation dot for three seconds
     countdown.reset() 
     fixation_dot_grey.draw() 
@@ -56,7 +66,6 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
         else:
             gabor_pos = (30, 0)
         
-        anti_or_clockwise = random.choice(clockwise_anticlockwise)
         isi_this_trial = random.choice(isi)
         iti_this_trial = random.choice(iti) 
         r_peak_counter = 0
@@ -73,7 +82,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                        size=50,  # Size of the Gabor patch in pixels
                        sf=0.1,   # Spatial frequency (cycles per pixel)
                        pos = gabor_pos # Position of the Gabor patch - again arbitrary for now 
-                       ori=gabor_orientation,   # Orientation of the Gabor patch (in degrees)
+                       ori=,   # Orientation of the Gabor patch (in degrees)
                        contrast=1.0)  # Contrast of the Gabor patch
             
             if this_trial_type == 's_lf': 
@@ -124,7 +133,15 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                          break
                      
             win.flip() # remove stimulus, grey fixation dot presented 
-            
+
+            ### FOR SYSTOLE TRIALS, CALCULATING THE MEAN RR-INTERVAL AND ADDING RR-INTERVALS TO LIST ### 
+                
+            for peak in range(len(r_peak_times) - 1): # going through the R-peak list
+                rr_interval = r_peak_times[peak + 1] - r_peak_times[peak] # R-peak, index + 1, minus R-peak, index
+                rr_intervals.append(rr_interval)
+                
+            mean_rr_int = mean(rr_intervals)
+        
 
             
             
