@@ -10,9 +10,11 @@ from psychopy import core, visual, event
 def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation, training_begins, pport_address_spike, trigger_code_spike)
     trial_type_rec = [] # i.e., systole high-frequency, diastole high-frequency etc. 
     angle_offset_rec = [] # offset of the Gabor patch 
-    lr = [] # whether the Gabor patch was presented left or right 
+    lr_rec = [] # whether the Gabor patch was presented left or right 
     clock_or_anti_rec = [] # whether it was clockwise or anticlockwise 
-    correct_incorrect = [] # whether response was correct or incorrect
+    correct_incorrect_rec = [] # whether response was correct or incorrect
+    isi_rec = []
+    iti_rec = [] 
     r_peak_times_list = [] # the times of the R-peaks for each trial 
     mean_rr_ints_list = [] # mean R-peak time for each trial 
     predicted_rr_ints_list = [] # the predicted R-peak time that the code generates 
@@ -55,6 +57,8 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
             gabor_pos = (30, 0)
         
         anti_or_clockwise = random.choice(clockwise_anticlockwise)
+        isi_this_trial = random.choice(isi)
+        iti_this_trial = random.choice(iti) 
         r_peak_counter = 0
         
         r_peak_times = [] 
@@ -113,6 +117,16 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
             win.flip()
             countdown.reset()
             sendParallelTrigger(pport_address_spike, trigger_code_spike)
+            fixation_dot_grey.draw()
+
+            while True:
+                     if countdown.getTime() < (-0.04 + one_frame): #40ms presentation 
+                         break
+                     
+            win.flip() # remove stimulus, grey fixation dot presented 
+            
+
+            
             
 
             
