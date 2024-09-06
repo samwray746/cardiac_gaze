@@ -8,7 +8,7 @@ def experiment_variables(win):
     trigger_code_spike = 255
 
     experiment_clock = core.MonotonicClock() # the main clock used in the experiment 
-    countdown = core.CountdownTimer()
+    countdown = core.CountdownTimer() # used for general stimulus presentations etc. 
     
     fr = win.getActualFrameRate() # getting frame rate of the monitor 
     one_frame = 1/fr
