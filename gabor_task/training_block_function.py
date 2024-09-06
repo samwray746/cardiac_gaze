@@ -218,6 +218,25 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
 
         ### INTER-STIMULUS INTERVAL ### 
 
+        countdown.reset()
+        fixation_dot_yellow.draw() # indicating to participant that a response is needed 
+
+        while True:
+            if countdown.getTime() < (-isi_this_trial + one_frame):
+                break
+
+        win.flip()
+
+        ### RESPONSE PERIOD ### 
+        # While the yellow fixation dot is showing, participants have 1.5 seconds to respond with the up arrow key (perceived clockwise) or down arrow key (anticlockwise) 
+
+        countdown.reset(1.5) 
+        
+        
+
+        
+        
+
             
             
 
