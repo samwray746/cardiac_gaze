@@ -43,7 +43,7 @@ win.mouseVisible = False
 
 ### VARIABLES FUNCTION ### 
 
-pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, starting_orientation = experiment_variables(win) 
+pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, trials_p_block, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation = experiment_variables(win) 
 
 ### STIMULI FUNCTION ### 
 
@@ -70,7 +70,7 @@ instructions(training_instructions_one, training_instructions_two, training_inst
 
 ### TRAINING BLOCKS ### 
 
-training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, starting_orientation, training_begins)
+training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation, training_begins)
 
 
 
