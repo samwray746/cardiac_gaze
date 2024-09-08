@@ -13,6 +13,10 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     lr_rec = [] # whether the Gabor patch was presented left or right 
     clock_or_anti_rec = [] # whether it was clockwise or anticlockwise 
     correct_incorrect_rec = [] # whether response was correct or incorrect
+    s_hf_c_i_rec = [] 
+    s_lf_c_i_rec = [] 
+    d_hf_c_i_rec = [] 
+    d_lf_c_i_rec = [] 
     isi_rec = []
     iti_rec = [] 
     r_peak_times_list = [] # the times of the R-peaks for each trial 
@@ -232,6 +236,17 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
         response_key = event.waitKeys(maxWait = 1.5,  keyList=['up', 'down'], timeStamped=True)
 
         if response_key: # i.e., if a response was given within 1.5 seconds 
+            if ((response_key[0][0] == 'up') and (anti_or_clockwise == 'c')) or ((response_key[0][0] == 'down') and (anti_or_clockwise == 'ac')): # a correct response
+                correct_response.draw()
+                correct_incorrect_rec.append(1)
+                if this_trial_type == 's_hf':
+                    s_hf_c_i_rec.append(1) 
+                elif this_trial_type == 's_lf':
+                    s_lf_c_i_rec.append(1)
+                elif this_trial_type == 'd_hf':
+                    d_hf_c_i_rec.append(1)
+                elif this_trial_type == 'd_lf':
+                    d_lf_c_i_rec.append(1) 
             
 
         
