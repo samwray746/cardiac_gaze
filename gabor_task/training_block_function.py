@@ -7,7 +7,7 @@ from psychopy import core, visual, event
 # This function runs the training trials for the experiment. The training trials allows the participant to get used to the task, and also sets the difficulty thresholds for each trial type 
 # that the participant begins with in the experimental blocks. 
 
-def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation, training_begins, pport_address_spike, trigger_code_spike)
+def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation, training_begins, pport_address_spike, trigger_code_spike, correct_response, incorrect_response, too_late)
     trial_type_rec = [] # i.e., systole high-frequency, diastole high-frequency etc. 
     angle_offset_rec = [] # offset of the Gabor patch 
     lr_rec = [] # whether the Gabor patch was presented left or right 
@@ -214,7 +214,6 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                 if countdown.getTime() < (-0.04 + one_frame):
                     break
             win.flip()
-            
 
         ### INTER-STIMULUS INTERVAL ### 
 
@@ -230,7 +229,12 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
         ### RESPONSE PERIOD ### 
         # While the yellow fixation dot is showing, participants have 1.5 seconds to respond with the up arrow key (perceived clockwise) or down arrow key (anticlockwise) 
 
-        countdown.reset(1.5) 
+        response_key = event.waitKeys(maxWait = 1.5,  keyList=['up', 'down'], timeStamped=True)
+
+        if response_key: # i.e., if a response was given within 1.5 seconds 
+            
+
+        
         
         
 
