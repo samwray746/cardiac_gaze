@@ -247,7 +247,28 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                     d_hf_c_i_rec.append(1)
                 elif this_trial_type == 'd_lf':
                     d_lf_c_i_rec.append(1) 
-            
+            elif ((response_key[0][0] == 'up') and (anti_or_clockwise == 'ac')) or ((response_key[0][0] == 'down') and (anti_or_clockwise == 'c')): # an incorrect response
+                incorrect_response.draw()
+                correct_incorrect_rec.append(0)
+                if this_trial_type == 's_hf':
+                    s_hf_c_i_rec.append(0) 
+                elif this_trial_type == 's_lf':
+                    s_lf_c_i_rec.append(0)
+                elif this_trial_type == 'd_hf':
+                    d_hf_c_i_rec.append(0)
+                elif this_trial_type == 'd_lf':
+                    d_lf_c_i_rec.append(0) 
+            else:
+                too_late.draw()
+                correct_incorrect_rec.append(0)
+                if this_trial_type == 's_hf':
+                    s_hf_c_i_rec.append(0) 
+                elif this_trial_type == 's_lf':
+                    s_lf_c_i_rec.append(0)
+                elif this_trial_type == 'd_hf':
+                    d_hf_c_i_rec.append(0)
+                elif this_trial_type == 'd_lf':
+                    d_lf_c_i_rec.append(0) 
 
         
         
