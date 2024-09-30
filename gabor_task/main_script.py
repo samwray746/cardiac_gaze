@@ -15,6 +15,7 @@ import psychopy
 import os.path as op
 from psychopy import event, visual, gui, core
 from statistics import mean
+#comme
 
 from intart_functions import sendParallelTrigger, readParallelTrigger
 from create_stimuli_function import create_experiment_stimuli
