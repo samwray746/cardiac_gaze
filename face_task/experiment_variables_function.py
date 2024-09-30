@@ -19,7 +19,6 @@ def experiment_variables(win):
     
     fr = win.getActualFrameRate() # getting frame rate of the monitor 
     one_frame = 1/fr
-    inc = 0.5 # variable controlling the rating scale 
 
     # variables defining the number of ticks and their spacing in the confidence scale 
     num_ticks = 11
@@ -65,4 +64,4 @@ def experiment_variables(win):
     str_m10v_15h = 'm10v_15h'
     str_m10v_m15h = 'm10v_m15h'
     
-    return pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, inc, num_ticks, tick_length, spacing, task_order_1, task_order_2, rep_length, number_reps, trials_per_block, order_1_structure, order_2_structure, str_0v_0h, str_0v_5h, str_0v_m5h, str_0v_10h, str_0v_m10h, str_0v_15h, str_0v_m15h, str_10v_0h, str_m10v_0h, str_10v_5h, str_10v_m5h, str_m10v_5h, str_m10v_m5h, str_10v_10h, str_10v_m10h, str_m10v_10h, str_m10v_m10h, str_10v_15h, str_10v_m15h, str_m10v_15h, str_m10v_m15h
+    return pport_address_spike, trigger_code_spike, experiment_clock, countdown, fr, one_frame, num_ticks, tick_length, spacing, task_order_1, task_order_2, rep_length, number_reps, trials_per_block, order_1_structure, order_2_structure, str_0v_0h, str_0v_5h, str_0v_m5h, str_0v_10h, str_0v_m10h, str_0v_15h, str_0v_m15h, str_10v_0h, str_m10v_0h, str_10v_5h, str_10v_m5h, str_m10v_5h, str_m10v_m5h, str_10v_10h, str_10v_m10h, str_m10v_10h, str_m10v_m10h, str_10v_15h, str_10v_m15h, str_m10v_15h, str_m10v_m15h
