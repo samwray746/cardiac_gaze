@@ -29,14 +29,61 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     d_lf_offset_rec = [] # diastole, low-frequency 
 
     anti_or_clockwise = random.choice(clockwise_anticlockwise) # kicking things off by randomly choosing whether the first presentation is clockwise/anticlockwise 
-
-    if anti_or_clockwise == 'ac': #i.e., clockwise
-        gabor_orientation = -gabor_orientation 
-        
+    
     s_hf_offset_rec.append(gabor_orientation) # starting orientation 
     s_lf_offset_rec.append(gabor_orientation) # starting orientation 
     d_hf_offset_rec.append(gabor_orientation) # starting orientation    
-    d_lf_offset_rec.append(gabor_orientation) # starting orientation 
+    d_lf_offset_rec.append(gabor_orientation) # starting orientation
+
+    if anti_or_clockwise == 'ac': #i.e., clockwise
+        gabor_orientation_for_stim = -gabor_orientation
+    else: gabor_orientation
+
+    # Creating the QuestHandler object for each condition 
+
+    s_hf_quest = data.QuestHandler(
+    startVal=gabor_orientation,          # Initial guess of orientation angle in degrees
+    startValSd=2,        # Standard deviation of initial guess
+    pThreshold=0.75,     # Desired performance level (75%)
+    nTrials=(training_trials/4),  # Number of trials
+    minVal=0,            # Minimum possible orientation (degrees)
+    maxVal=20,           # Maximum possible orientation (degrees)
+    beta=3.5,            # Steepness of psychometric function
+    delta=0.01,          # Lapse rate (probability of random error)
+    gamma=0.5)            # Guess rate (chance-level performance)
+
+    s_lf_quest = data.QuestHandler(
+    startVal=gabor_orientation,          # Initial guess of orientation angle in degrees
+    startValSd=2,        # Standard deviation of initial guess
+    pThreshold=0.75,     # Desired performance level (75%)
+    nTrials=(training_trials/4),  # Number of trials
+    minVal=0,            # Minimum possible orientation (degrees)
+    maxVal=20,           # Maximum possible orientation (degrees)
+    beta=3.5,            # Steepness of psychometric function
+    delta=0.01,          # Lapse rate (probability of random error)
+    gamma=0.5)            # Guess rate (chance-level performance)
+
+    d_hf_quest = data.QuestHandler(
+    startVal=gabor_orientation,          # Initial guess of orientation angle in degrees
+    startValSd=2,        # Standard deviation of initial guess
+    pThreshold=0.75,     # Desired performance level (75%)
+    nTrials=(training_trials/4),  # Number of trials
+    minVal=0,            # Minimum possible orientation (degrees)
+    maxVal=20,           # Maximum possible orientation (degrees)
+    beta=3.5,            # Steepness of psychometric function
+    delta=0.01,          # Lapse rate (probability of random error)
+    gamma=0.5)            # Guess rate (chance-level performance)
+
+    d_lf_quest = data.QuestHandler(
+    startVal=gabor_orientation,          # Initial guess of orientation angle in degrees
+    startValSd=2,        # Standard deviation of initial guess
+    pThreshold=0.75,     # Desired performance level (75%)
+    nTrials=(training_trials/4),  # Number of trials
+    minVal=0,            # Minimum possible orientation (degrees)
+    maxVal=20,           # Maximum possible orientation (degrees)
+    beta=3.5,            # Steepness of psychometric function
+    delta=0.01,          # Lapse rate (probability of random error)
+    gamma=0.5)            # Guess rate (chance-level performance)
 
     # Starting off the training block by showing the grey fixation dot for three seconds
     countdown.reset() 
@@ -228,6 +275,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
             if countdown.getTime() < (-isi_this_trial + one_frame):
                 break
 
+        countdown.reset() # Resetting so that we wait for 1.5 seconds regardless 
         win.flip()
 
         ### RESPONSE PERIOD ### 
@@ -260,7 +308,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                     d_lf_c_i_rec.append(0) 
             else:
                 too_late.draw()
-                correct_incorrect_rec.append(0)
+                correct_incorrect_rec.append(2)
                 if this_trial_type == 's_hf':
                     s_hf_c_i_rec.append(0) 
                 elif this_trial_type == 's_lf':
@@ -269,6 +317,19 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                     d_hf_c_i_rec.append(0)
                 elif this_trial_type == 'd_lf':
                     d_lf_c_i_rec.append(0) 
+
+        while True:
+            if countdown.getTime() < -1.5:
+                break
+
+        win.flip()
+        countdown.reset()
+
+        ### STIMULUS ADJUSTMENT ### 
+
+        
+        
+        
 
         
         
