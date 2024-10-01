@@ -31,13 +31,13 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     anti_or_clockwise = random.choice(clockwise_anticlockwise) # kicking things off by randomly choosing whether the first presentation is clockwise/anticlockwise 
     
     s_hf_offset_rec.append(gabor_orientation) # starting orientation 
-    s_lf_offset_rec.append(gabor_orientation) # starting orientation 
-    d_hf_offset_rec.append(gabor_orientation) # starting orientation    
-    d_lf_offset_rec.append(gabor_orientation) # starting orientation
+    s_lf_offset_rec.append(gabor_orientation) 
+    d_hf_offset_rec.append(gabor_orientation)     
+    d_lf_offset_rec.append(gabor_orientation)
 
-    if anti_or_clockwise == 'ac': #i.e., clockwise
+    if anti_or_clockwise == 'ac': #i.e., an anticlockwise trial 
         gabor_orientation_for_stim = -gabor_orientation
-    else: gabor_orientation
+    else: gabor_orientation_for_stim = gabor_orientation 
 
     # Creating the QuestHandler object for each condition 
 
@@ -85,7 +85,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
     delta=0.01,          # Lapse rate (probability of random error)
     gamma=0.5)            # Guess rate (chance-level performance)
 
-    # Starting off the training block by showing the grey fixation dot for three seconds
+    # Starting off the training block by showing the grey fixation dot for two seconds
     countdown.reset() 
     fixation_dot_grey.draw() 
     win.flip()
@@ -267,20 +267,18 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
             win.flip()
 
         ### INTER-STIMULUS INTERVAL ### 
-
-        countdown.reset()
+        
         fixation_dot_yellow.draw() # indicating to participant that a response is needed 
 
         while True:
             if countdown.getTime() < (-isi_this_trial + one_frame):
                 break
-
-        countdown.reset() # Resetting so that we wait for 1.5 seconds regardless 
         win.flip()
 
         ### RESPONSE PERIOD ### 
         # While the yellow fixation dot is showing, participants have 1.5 seconds to respond with the up arrow key (perceived clockwise) or down arrow key (anticlockwise) 
 
+        countdown.reset() # Resetting so that we wait for 1.5 seconds regardless of whether the participant responded 
         response_key = event.waitKeys(maxWait = 1.5,  keyList=['up', 'down'], timeStamped=True)
 
         if response_key: # i.e., if a response was given within 1.5 seconds 
@@ -295,7 +293,7 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                     d_hf_c_i_rec.append(1)
                 elif this_trial_type == 'd_lf':
                     d_lf_c_i_rec.append(1) 
-            elif ((response_key[0][0] == 'up') and (anti_or_clockwise == 'ac')) or ((response_key[0][0] == 'down') and (anti_or_clockwise == 'c')): # an incorrect response
+            elif ((response_key[0][0] != 'down') and (anti_or_clockwise == 'ac')) or ((response_key[0][0] != 'up') and (anti_or_clockwise == 'c')): # an incorrect response
                 incorrect_response.draw()
                 correct_incorrect_rec.append(0)
                 if this_trial_type == 's_hf':
@@ -306,26 +304,35 @@ def training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixat
                     d_hf_c_i_rec.append(0)
                 elif this_trial_type == 'd_lf':
                     d_lf_c_i_rec.append(0) 
-            else:
-                too_late.draw()
-                correct_incorrect_rec.append(2)
-                if this_trial_type == 's_hf':
-                    s_hf_c_i_rec.append(0) 
-                elif this_trial_type == 's_lf':
-                    s_lf_c_i_rec.append(0)
-                elif this_trial_type == 'd_hf':
-                    d_hf_c_i_rec.append(0)
-                elif this_trial_type == 'd_lf':
-                    d_lf_c_i_rec.append(0) 
+        else: # i.e., response key returns None, so participant didn't respond in time 
+            too_late.draw()
+            correct_incorrect_rec.append(2) # 2 represents them being too late 
+            if this_trial_type == 's_hf':
+                s_hf_c_i_rec.append(0) 
+            elif this_trial_type == 's_lf':
+                s_lf_c_i_rec.append(0)
+            elif this_trial_type == 'd_hf':
+                d_hf_c_i_rec.append(0)
+            elif this_trial_type == 'd_lf':
+                d_lf_c_i_rec.append(0) 
 
         while True:
-            if countdown.getTime() < -1.5:
+            if countdown.getTime() < -1.5: # waiting for 1.5 seconds regardless of response
                 break
 
-        win.flip()
+        win.flip() # showing the participant feedback 
         countdown.reset()
 
         ### STIMULUS ADJUSTMENT ### 
+
+        if (this_trial_type == 's_hf') and (correct_incorrect_rec[-1] == 1): # systole high-freq, correct
+            angles_hf_quest.addResponse(1) #updating QuestHandler
+            s_hf_offset_rec = [] # record of the offsets used in the systole high-frequency trials
+
+
+        
+
+        
 
         
         
