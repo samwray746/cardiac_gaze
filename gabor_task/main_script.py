@@ -72,6 +72,7 @@ instructions(training_instructions_one, training_instructions_two, training_inst
 ### TRAINING BLOCKS ### 
 
 training_block(win, countdown, fixation_dot_grey, fixation_dot_yellow, fixation_dot_green, one_frame, training_trials, isi, iti, diff_trial_conditions, left_right, clockwise_anticlockwise, gabor_orientation, training_begins, pport_address_spike, trigger_code_spike, correct_response, incorrect_response, too_late)
+trial_type_rec, angle_offset_rec, lr_rec, clock_or_anti_rec, correct_incorrect_rec, s_hf_c_i_rec, s_lf_c_i_rec, d_hf_c_i_rec, d_lf_c_i_rec, isi_rec, iti_rec, r_peak_times_list, mean_rr_ints_list, predicted_rr_ints_list, s_hf_offset_rec, s_lf_offset_rec, d_hf_offset_rec, d_lf_offset_rec
 
 
 
